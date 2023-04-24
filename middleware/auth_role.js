@@ -1,9 +1,9 @@
-const dotenv = require("dotenv")
-const BlackListToken = require("../models/BlackListToken")
+import dotenv from "dotenv"
+import BlackListToken from "../models/BlackListToken.js"
 dotenv.config({ path: "./config.env" })
-const jwt = require("jsonwebtoken")
+import jwt from "jsonwebtoken"
 
-module.exports = function auth_role(roles = []) {
+const auth_role = function (roles = []) {
 
     if (typeof roles === 'string') {
         roles = [roles];
@@ -40,3 +40,5 @@ module.exports = function auth_role(roles = []) {
     }
   }
 }
+
+export default auth_role

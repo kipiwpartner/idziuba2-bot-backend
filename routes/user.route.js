@@ -1,10 +1,10 @@
-const { Router } = require("express");
-const mongoose = require("mongoose");
-const Role = require("../models/Role");
-const User = require("../models/User");
-const BlackListToken = require("../models/BlackListToken");
-const auth_role = require("../middleware/auth_role");
-const jwt = require("jsonwebtoken");
+import { Router } from "express"
+import mongoose from "mongoose"
+import Role from "../models/Role.js"
+import User from "../models/User.js"
+import BlackListToken from "../models/BlackListToken.js"
+import auth_role from "../middleware/auth_role.js"
+
 const router = Router();
 
 router.get("/list", auth_role(['admin', 'manager']), async (req, res) => {
@@ -87,4 +87,4 @@ router.put("/edit/:id", auth_role('admin'), async (req, res) => {
   }
 })
 
-module.exports = router
+export default router

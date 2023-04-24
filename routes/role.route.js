@@ -1,8 +1,7 @@
-const {Router} = require('express')
+import {Router} from "express"
 const router = Router()
-const Role = require('../models/Role')
-const auth = require('../middleware/auth')
-const auth_role = require('../middleware/auth_role')
+import Role from "../models/Role.js"
+import auth_role from "../middleware/auth_role.js"
 
 router.get('/list', async (req, res) => {
     try {
@@ -31,4 +30,4 @@ router.post('/create', async (req, res) => {
     }
   })
 
-  module.exports = router;
+export default router

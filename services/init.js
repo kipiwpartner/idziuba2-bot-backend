@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const config = require('config');
-const Role = require("../models/Role");
+import mongoose from "mongoose"
+import config from "config"
+import Role from "../models/Role.js"
 
 const role_default = config.get('role_default');
 
@@ -22,4 +22,4 @@ const init = {
     }
 }
 
-module.exports = init
+export default init

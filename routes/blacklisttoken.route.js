@@ -1,8 +1,6 @@
-const {Router} = require('express')
+import {Router} from "express"
 const router = Router()
-const BlackListToken = require('../models/BlackListToken')
-const auth = require('../middleware/auth')
-const auth_role = require('../middleware/auth_role')
+import BlackListToken from "../models/BlackListToken.js"
 
 router.get('/list', async (req, res) => {
     try {
@@ -15,4 +13,4 @@ router.get('/list', async (req, res) => {
     }
   })
 
-  module.exports = router;
+export default router

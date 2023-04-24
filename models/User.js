@@ -1,4 +1,7 @@
-const {Schema, model} = require('mongoose')
+import mongoose from "mongoose"
+
+const Schema = mongoose.Schema;
+const model = mongoose.model;
 
 const userSchema = new Schema({
   email: {
@@ -26,4 +29,4 @@ userSchema.set('toJSON', {
     virtuals: true,
 });
 
-module.exports = model('User', userSchema)
+export default model('User', userSchema)

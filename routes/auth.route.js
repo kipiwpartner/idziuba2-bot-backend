@@ -1,12 +1,12 @@
-const { Router } = require("express");
-const bcrypt = require("bcryptjs");
+import { Router } from "express"
+import bcrypt from "bcryptjs"
 const router = Router();
-const Role = require("../models/Role");
-const User = require("../models/User");
-const BlackListToken = require("../models/BlackListToken");
-const dotenv = require("dotenv");
+import Role from "../models/Role.js"
+import User from "../models/User.js"
+import BlackListToken from "../models/BlackListToken.js"
+import dotenv from "dotenv"
 dotenv.config({ path: "./config.env" });
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken"
 
 router.post("/register", async (req, res) => {
   try {
@@ -42,7 +42,7 @@ router.post("/login", async (req, res) => {
       }
     }
 
-    arr_role = user.role.map(function (el) {
+    const arr_role = user.role.map(function (el) {
       return el.role;
     });
 
@@ -81,4 +81,4 @@ router.get("/logout", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router
