@@ -1,15 +1,15 @@
 import mongoose from "mongoose"
 import config from "config"
-import Role from "../models/Role.js"
+import Role from "#models/Role.js"
 
 const role_default = config.get('role_default');
 
 const init = {
-    
+
     startApp : async (app) => {
         try {
             await mongoose.connect(process.env.DATABASE_URI, {})
-            let role_query = { role : role_default}
+            let role_query = { name : role_default}
             let role = await Role.findOne(role_query)
             if (role === null){
                 await Role.create(role_query)

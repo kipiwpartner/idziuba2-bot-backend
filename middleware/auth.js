@@ -1,13 +1,9 @@
 import dotenv from "dotenv"
-import BlackListToken from "../models/BlackListToken.js"
+import BlackListToken from "#models/BlackListToken.js"
 dotenv.config({ path: "./config.env" })
 import jwt from "jsonwebtoken"
 
-const authRoleQraphql = function (roles = []) {
-
-    if (typeof roles === 'string') {
-        roles = [roles];
-    }
+const auth = function (roles = '') {
 
   return (req, res, next) => {
 
@@ -23,4 +19,4 @@ const authRoleQraphql = function (roles = []) {
   }
 }
 
-export default authRoleQraphql
+export default auth

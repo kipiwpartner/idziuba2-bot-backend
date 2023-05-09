@@ -30,7 +30,13 @@
     "graphql-http": "^1.18.0",
     "graphql-tools": "^8.3.20",
     "jsonwebtoken": "^9.0.0",
+    "module-alias": "^2.2.2",
     "mongoose": "^7.0.4",
     "nodemon": "^2.0.22"
+  },
+  "imports": {
+    "#types/*.js": "./graphql/types/*.js",
+    "#schemas/*.js": "./graphql/schemas/*.js",
+    "#models/*.js": "./models/*.js"
   }
 }

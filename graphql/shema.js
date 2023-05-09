@@ -1,24 +1,22 @@
 import { mergeSchemas } from '@graphql-tools/schema';
 import { personSchema } from './schemas/personShema.js'
-import { peopleSchema } from './schemas/peopleSchema.js';
+import { peopleSchema } from '#schemas/peopleSchema.js';
+import { getAllRolesSchema, getRoleByNameSchema} from '#schemas/Role/getters.js';
 
-export const schema = mergeSchemas({
-    schemas: [
-        personSchema,
-        peopleSchema
-    ],
-  });
-  
-  export default schema;
+// export const testSchema = mergeSchemas({
+//     schemas: [
+//         personSchema,
+//         peopleSchema,
+//         getAllRolesSchema,
+//         getRoleByIdSchema
+//     ],
+//   })
 
-//   import { mergeTypeDefs, mergeResolvers } from '@graphql-tools/merge';
-//   import { makeExecutableSchema } from '@graphql-tools/schema';
-//   import { personSchema } from './schemas/personShema.js';
-  
-//   const mergedTypeDefs = mergeTypeDefs([personSchema.typeDefs,]);
-//   const mergedResolvers = mergeResolvers([personSchema.resolvers]);
-  
-//   export const schema = makeExecutableSchema({
-//     typeDefs: mergedTypeDefs,
-//     resolvers: mergedResolvers,
-//   });
+
+export const adminSchema = mergeSchemas({
+      schemas: [
+        //Role
+          getAllRolesSchema,
+          getRoleByNameSchema
+      ],
+  })

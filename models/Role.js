@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const model = mongoose.model;
 
 const roleSchema = new Schema({
-  role: {
+  name: {
     type: String,
     required: true,
     unique: true
