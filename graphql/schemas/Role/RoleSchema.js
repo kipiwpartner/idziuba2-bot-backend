@@ -6,7 +6,7 @@ export const getAllRolesSchema = new GraphQLSchema({
     query: new GraphQLObjectType({
       name: 'Query',
       fields: {
-        allRoles: {
+        getAllRoles: {
           type: new GraphQLList(roleType),
           resolve: async () => {
             return await Role.find();
@@ -20,7 +20,7 @@ export const getRoleByNameSchema = new GraphQLSchema({
     query: new GraphQLObjectType({
       name: 'Query',
       fields: {
-        roleByName: {
+        getRoleByName: {
           type: roleType,
           args: {
             name: { type: GraphQLString },

@@ -3,7 +3,7 @@ import BlackListToken from "#models/BlackListToken.js"
 dotenv.config({ path: "./config.env" })
 import jwt from "jsonwebtoken"
 
-const auth = function (roles = '') {
+const auth = function (role = '') {
 
   return (req, res, next) => {
 
