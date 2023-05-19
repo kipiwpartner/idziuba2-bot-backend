@@ -21,17 +21,6 @@ router.put("/superadmin/edit/:id", auth_role('admin'), async (req, res) => {
     
     let userid = req.params.id
 
-    //let role = req.body.role
-    // const new_role = []
-    // for (i = 0; i < role.length; i++) {
-    //   if (mongoose.isValidObjectId(role[i].id)) {
-    //     role = await Role.findById(role[i].id);
-    //     if (role) {
-    //       new_role.push(role);
-    //     }
-    //   }
-    // }
-
     const new_role = Promise.all(
       req.body.role.map(async (role) => {
         if (mongoose.isValidObjectId(role.id)) {

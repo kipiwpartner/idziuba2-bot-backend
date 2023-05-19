@@ -14,11 +14,11 @@ const userSchema = new Schema({
     required: true
   },
   token: String,
-  role: [{
+  role: {
         type: Schema.Types.ObjectId,
         ref: 'Role',
         required: true
-  }]
+  }
 })
 
 userSchema.virtual('id').get(function () {
