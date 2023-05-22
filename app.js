@@ -26,15 +26,15 @@ const store = new MongoDBStore({
     collection: 'sessions'
 })
 app.use(session({
-    secret: 'ivanSessionSecret',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     store
 }))
 
 //Routes
-import auth_route from "./routes/auth.route.js";
-app.use('/auth', auth_route)
+import auth_route from "./routes/api/v1/auth.route.js";
+app.use(process.env.API_VERSION, auth_route)
 /* 404 */
 app.get('*', (req, res) => {
     res.status(404)
