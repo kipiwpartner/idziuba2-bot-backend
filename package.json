@@ -37,6 +37,9 @@
     "#types/*.js": "./graphql/types/*.js",
     "#schemas/*.js": "./graphql/schemas/*.js",
     "#models/*.js": "./models/*.js",
-    "#services/*.js": "./services/*.js"
+    "#services/*.js": "./services/*.js",
+    "#routes/*.js": "./routes/*.js",
+    "#graphql/*.js": "./graphql/*.js",
+    "#middleware/*.js": "./middleware/*.js"
   }
 }
