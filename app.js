@@ -1,21 +1,24 @@
 import express from "express";
 import session from "express-session"
+import { default as connectMongoDBSession} from 'connect-mongodb-session';
 import cors from 'cors'
 import { createHandler } from 'graphql-http/lib/use/express';
-import { adminSchema } from './graphql/shema.js';
+import { adminSchema } from '#graphql/shema.js';
 //ENV
 import dotenv from "dotenv";
 dotenv.config({path : './config.env'});
+
+/* Auth check middleware */
+import auth from "#middleware/auth.js";
+
+//Routes
+import auth_route from "#routes/api/v1/auth.route.js";
 
 const app = express();
 /* TODO CORS for all now */
 app.use(cors())
 
-/* Auth check */
-import auth from "./middleware/auth.js";
-
 /* Set session to mongodb */
-import { default as connectMongoDBSession} from 'connect-mongodb-session';
 const MongoDBStore = connectMongoDBSession(session);
 
 app.use(express.urlencoded({extended:true}));
@@ -26,15 +29,13 @@ const store = new MongoDBStore({
     collection: 'sessions'
 })
 app.use(session({
-    secret: 'ivanSessionSecret',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     store
 }))
 
-//Routes
-import auth_route from "./routes/auth.route.js";
-app.use('/auth', auth_route)
+app.use(process.env.API_VERSION, auth_route)
 /* 404 */
 app.get('*', (req, res) => {
     res.status(404)

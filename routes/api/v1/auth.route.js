@@ -27,38 +27,38 @@ router.post("/register", async (req, res) => {
     res.status(500).json({ message: e.message, succes: false });
   }
 })
-
-router.post("/login", async (req, res) => {
+router.post("/auth/login", async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email }).populate("role")
 
     if (!user) {
-      return res.status(500).json({ message: "User is not found", succes: false });
+      return res.status(500).json({ message: "User is not found", result: false });
     } else {
       const isMatch = bcrypt.compareSync(password, user.password);
-
       if (!isMatch) {
-        return res.status(500).json({ message: "Password not match", succes: false });
+        return res.status(500).json({ message: "Password not match", result: false });
       }
     }
 
     const token = jwt.sign(
       {
         userId: user.id,
-        userRoleName: user.role.role,
+        userRoleName: user.role.name,
         userRoleId: user.role.id
       },
       process.env.JWTSECRET,
       { expiresIn: "1d" }
     )
 
+    const csrfToken = await bcrypt.hash(process.env.CSRF_TOKEN, 5)
+
     req.session.user  = {
-      roleName: user.role.role,
+      roleName: user.role.name,
       roleId: user.role.id,
       email: user.email,
       userAgent: req.headers['user-agent'],
-      sscsrftoken: req.headers?.sscsrftoken
+      csrfToken
     }
 
     req.session.save(err => {
@@ -66,10 +66,9 @@ router.post("/login", async (req, res) => {
         throw err
       }
     })
-
-    res.status(200).json({ token, userId: user.id, userRole: user.role, succes: true });
+    res.status(200).json({ token, csrfToken, userId: user.id, userRole: user.role.name, result: true });
   } catch (e) {
-    res.status(500).json({ message: e.message, succes: false });
+    res.status(500).json({ message: e.message, result: false });
   }
 });
 
