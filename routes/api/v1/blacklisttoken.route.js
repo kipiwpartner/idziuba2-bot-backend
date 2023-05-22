@@ -1,6 +1,6 @@
 import {Router} from "express"
 const router = Router()
-import BlackListToken from "#models/BlackListToken.js.js"
+import BlackListToken from "#models/BlackListToken.js"
 
 router.get('/list', async (req, res) => {
     try {

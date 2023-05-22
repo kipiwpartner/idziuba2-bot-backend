@@ -1,6 +1,6 @@
 import {Router} from "express"
 const router = Router()
-import Role from "#models/Role.js.js"
+import Role from "#models/Role.js"
 
 router.get('/list', async (req, res) => {
     try {

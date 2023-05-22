@@ -1,9 +1,9 @@
 import { Router } from "express"
 import mongoose from "mongoose"
-import Role from "#models/Role.js.js"
-import User from "#models/User.js.js"
-import BlackListToken from "#models/BlackListToken.js.js"
-import auth_role from "../../../middleware/auth_role.js"
+import Role from "#models/Role.js"
+import User from "#models/User.js"
+import BlackListToken from "#models/BlackListToken.js"
+import auth_role from "#middleware/auth_role.js"
 
 const router = Router();
 
